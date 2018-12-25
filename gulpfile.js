@@ -6,7 +6,9 @@ var bower = require('gulp-bower');
 var vinylPaths = require('vinyl-paths');
 var sourcemaps = require('gulp-sourcemaps');
 var typescript = require('gulp-typescript');
+var deploy = require('gulp-gh-pages');
 
+  
 ///////////////////////////////////////////////////////////////////////////
 // config
 //
@@ -59,3 +61,11 @@ gulp.task('bower', function() {
 //
 ///////////////////////////////////////////////////////////////////////////
 gulp.task('default', ['ts-build']);
+
+gulp.task('deploy', function () {
+  return gulp.src("./prod/**/*")
+    .pipe(deploy({ 
+      remoteUrl: "https://github.com/Nainoor/Nainoor.github.io.git",
+      branch: "master"
+    }))
+});
